@@ -1,0 +1,15 @@
+{
+  "name": "hand-audio-controller",
+  "version": "1.0.0",
+  "description": "Control audio playback with hand gestures",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "yargs": "^17.7.2",
+    "open": "^8.4.2"
+  }
+}

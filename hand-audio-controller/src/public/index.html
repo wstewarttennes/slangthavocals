@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hand Audio Controller</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #1a1a1a;
+            color: white;
+        }
+        #container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        #videoContainer {
+            position: relative;
+            display: inline-block;
+        }
+        #video {
+            transform: scaleX(-1);
+        }
+        #canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: scaleX(-1);
+        }
+        #controls {
+            margin-top: 20px;
+            padding: 20px;
+            background: #2a2a2a;
+            border-radius: 8px;
+        }
+        .param {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+        .value {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        #status {
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Hand Audio Controller</h1>
+        <div id="status">Click Start to begin</div>
+        <button id="startBtn" style="padding: 10px 20px; font-size: 18px; margin-bottom: 20px;">Start</button>
+        
+        <div id="videoContainer" style="display: none;">
+            <video id="video" width="640" height="480" autoplay></video>
+            <canvas id="canvas" width="640" height="480"></canvas>
+        </div>
+        
+        <div id="controls">
+            <div class="param">Pitch Shift: <span id="pitch" class="value">0</span> semitones</div>
+            <div class="param">Playback Speed: <span id="speed" class="value">1.0</span>x</div>
+            <div class="param">Detection: <span id="detection" class="value">No hand detected</span></div>
+            <div class="param" style="font-size: 14px; color: #888;">
+                Tips: Show both hands with fingerprints facing camera. Uses thumb + index from each hand.<br>
+                Width controls pitch (horizontal stretch). Height controls speed (vertical stretch).<br>
+                Cyan = Left hand, Magenta = Right hand. Yellow outline = control shape.
+            </div>
+            <div class="param" style="font-size: 12px; color: #666; margin-top: 10px;">
+                Powered by MediaPipe Hands - Google's ML model that detects 21 3D landmarks per hand in real-time
+            </div>
+        </div>
+        
+        <audio id="audio" loop></audio>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
